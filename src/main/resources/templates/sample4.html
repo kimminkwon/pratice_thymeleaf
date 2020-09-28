@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table th:with="target='u0001'">
+    <tr>
+        <td>MID</td>
+        <td>MNAME</td>
+        <td>REGDATE</td>
+    </tr>
+    <tr th:each="member : ${memberList}">
+        <td th:text="${member.mid == target ? 'SECRET' : member.mid}"></td>
+        <td th:text="${member.mname}">Doe</td>
+        <td th:text="${#dates.format(member.regdate, 'yyyy-MM-dd')}"></td>
+    </tr>
+</table>
+
+<table th:with="target='u0001'">
+    <tr>
+        <td>MID</td>
+        <td>MNAME</td>
+        <td>REGDATE</td>
+    </tr>
+    <tr th:each="member : ${memberList}">
+        <td th:if="${member.mid}">
+            <a href="/modify" th:if="${member.mid == target}">MODIFY</a>
+            <p th:unless="${member.mid == target}">VIEW</p>
+        </td>
+        <td th:text="${member.mid == target ? 'SECRET' : member.mid}"></td>
+        <td th:text="${member.mname}">Doe</td>
+        <td th:text="${#dates.format(member.regdate, 'yyyy-MM-dd')}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
